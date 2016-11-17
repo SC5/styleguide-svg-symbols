@@ -1,0 +1,87 @@
+<style type="text/css">
+  .icons-main {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .icons-main::after {
+    content: '';
+    flex-grow: 100;
+  }
+
+  .icon {
+    display: inline-block;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 10px;
+    margin: 1px;
+    width: 9em;
+    max-width: 9em;
+    background-color: #F1F3F3;
+    text-align: center;
+  }
+  .icon-wrapper {
+    margin: 10px auto 0;
+  }
+  .icon-id {
+    margin: 10px;
+  }
+
+  .icon-color-block {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+  }
+  .icon-color-block--active {
+    -webkit-transform: scale(1.6);
+            transform: scale(1.6);
+  }
+
+  .text-default, h1, h2, h3, h4 {
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+  .my-icon--demo {
+    height: 4em;
+    width: 4em;
+  }
+
+</style>
+
+<div>
+  <h3>Markup</h3>
+  <pre>
+    <code><%= _.escape('<svg role="img" class="') %><%= 'my-icon' %><%= _.escape('">') %>
+      <%= _.escape('<use xlink:href="/assets/icons-map.svg#') %><%= '[ICON_ID]' %><%= _.escape('"></use>') %>
+    <%= _.escape('</svg>') %>
+  </code>
+  </pre>
+</div>
+<div>
+  <h3>Browser support</h3>
+  <p class="text-default">
+    <b>External</b> svgs are <a href="https://github.com/jonathantneal/svg4everybody#implementation-status">not supported by all browsers</a>. For full browser support you can either add
+    <a href="/assets/icons-map.svg">icons-map.svg</a> to your DOM, or better yet, use
+    <a href="https://github.com/jonathantneal/svg4everybody">svg4everybody</a> to take care of polyfills.
+  </p>
+
+</div>
+<div ng-init="displayColor = '#231f20';colors = ['#231f20', '#85cebb', '#ef3e32', '#f99e1c', '#8c9697']">
+  <div>
+    <h4>Svg symbols inherit fill color from their parents, try it out:</h4>
+    <a class="icon-color-block" ng-click="$parent.displayColor = color" ng-repeat="color in colors" ng-class="{'icon-color-block--active': $parent.displayColor === color}" ng-style="{'background-color': color}"></a>
+  </div>
+  <div class="icons-main" ng-style="{color: displayColor}"">
+  <% _.each( icons, function( icon ){ %>
+    <div class="icon">
+      <div class="icon-wrapper">
+        <svg role="img" class="my-icon my-icon--demo">
+          <use xlink:href="/assets/icons-map.svg#<%= icon.id %>"></use>
+        </svg>
+      </div>
+      <p class="icon-id text-default">#<%= icon.id %></p>
+    </div><% }); %>
+  </div>
+</div>
