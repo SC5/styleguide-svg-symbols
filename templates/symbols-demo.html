@@ -54,7 +54,7 @@
   <h3>Markup</h3>
   <pre>
     <code><%= _.escape('<svg role="img" class="') %><%= 'my-icon' %><%= _.escape('">') %>
-      <%= _.escape('<use xlink:href="/assets/icons-map.svg#') %><%= '[ICON_ID]' %><%= _.escape('"></use>') %>
+      <%= _.escape('<use xlink:href="assets/icons-map.svg#') %><%= '[ICON_ID]' %><%= _.escape('"></use>') %>
     <%= _.escape('</svg>') %>
   </code>
   </pre>
@@ -63,7 +63,7 @@
   <h3>Browser support</h3>
   <p class="text-default">
     <b>External</b> svgs are <a href="https://github.com/jonathantneal/svg4everybody#implementation-status">not supported by all browsers</a>. For full browser support you can either add
-    <a href="/assets/icons-map.svg">icons-map.svg</a> to your DOM, or better yet, use
+    <a href="assets/icons-map.svg">icons-map.svg</a> to your DOM, or better yet, use
     <a href="https://github.com/jonathantneal/svg4everybody">svg4everybody</a> to take care of polyfills.
   </p>
 
@@ -78,7 +78,7 @@
     <div class="icon">
       <div class="icon-wrapper">
         <svg role="img" class="my-icon my-icon--demo">
-          <use xlink:href="/assets/icons-map.svg#<%= icon.id %>"></use>
+          <use xlink:href="assets/icons-map.svg#<%= icon.id %>"></use>
         </svg>
       </div>
       <p class="icon-id text-default">#<%= icon.id %></p>
