@@ -59,8 +59,7 @@ gulp.task('prepare:svg', function() {
     .pipe(svgmin({
       plugins: [
         {removeTitle: true},
-        {removeDesc: true},
-        {removeViewBox: true}
+        {removeDesc: true}
       ]
     }))
     .pipe(gulp.dest(iconsPath));
