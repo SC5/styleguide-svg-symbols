@@ -4,6 +4,7 @@ var sass =            require('gulp-sass');
 var svgSymbols =      require('gulp-svg-symbols');
 var rename =          require('gulp-rename');
 var rsp =             require('remove-svg-properties').stream;
+var svgmin =          require('gulp-svgmin');
 var runSequence =     require('run-sequence');
 var mainFile =        'sass/main.scss';
 var outputPath =      'output';
@@ -54,6 +55,13 @@ gulp.task('prepare:svg', function() {
   return gulp.src(iconsSrc)
     .pipe(rsp.remove({
       properties: [rsp.PROPS_FILL]
+    }))
+    .pipe(svgmin({
+      plugins: [
+        {removeTitle: true},
+        {removeDesc: true},
+        {removeViewBox: true}
+      ]
     }))
     .pipe(gulp.dest(iconsPath));
 });
